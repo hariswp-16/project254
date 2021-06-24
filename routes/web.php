@@ -15,6 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/mahasiswa', function(){
-	echo 'Mahasiswa';
+Route::get('/portofolio', function(){
+	return view('identitas');
 });
+
+Route::get('/identitas', 'HarisController@index');
+
+Route::get('product', 'ProductController@index');
+
+Route::get('product', 'ProductController@index')->name('product.index');
+
+Route::get('product/add', 'ProductController@add')->name('product.add');
+Route::post('product/save', 'ProductController@save')->name('product.save');

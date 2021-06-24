@@ -34,4 +34,6 @@ Route::delete('kategori/{id}', 'API\CategoriesController@destroy');
 
 // tambah data
 Route::post('kategori', 'API\CategoriesController@store');
+
+Route::patch('kategori/{id}', 'API\CategoriesController@update');
 //});

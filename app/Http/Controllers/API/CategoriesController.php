@@ -103,7 +103,28 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Categories::where('id', $id)->first();
+
+        if (!empty($data)) {
+            $validasi = Validator::make($request->all(), [
+                "name" => "required"
+            ]);
+
+            if ($validasi->passes()) {
+                $data->update($request->all());
+                return response()->json([
+                    'pesan' => "Data Berhasil diupdate",
+                    'data' => $data
+                ]);
+            } else {
+                return response()->json([
+                    'pesan' => 'Data Gagal di Update',
+                    'data' => $validasi->errors()->all()
+                ], 404);
+            }
+            return response()->json([
+                'pesan' => "Data tidak ditemukan"]);
+}
     }
 
     /**
